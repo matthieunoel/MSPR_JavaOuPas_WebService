@@ -1,21 +1,14 @@
 import { Logger } from '../logSystem'
-import { IPromotionRootResult } from './promotion.interfaces'
+import { IPromotion, IPromotionRootResult } from './promotion.interfaces'
 import { performance } from 'perf_hooks'
 import { Config } from '../app'
 import { RootService } from '../root/root.service'
 import { Utils } from '../utils'
 
 const uuidv1 = require('uuid/v1')
+const Database = require('better-sqlite3')
 
 export class PromotionService {
-
-    // Ok, l'idée c'est former une url pour translate.google.com avec le text, les langues et tout.
-    // Ensuite, avec Puppeteer on record la video, on clique sur le bouton du haut parleur
-    // On arrête l'enregistrement
-    // On prends juste le son de la video
-    // On renvoie le son sous le bon format en tant que res
-
-
 
     public reqPromotions(token: string): Promise<IPromotionRootResult> {
 
@@ -28,7 +21,7 @@ export class PromotionService {
             try {
 
                 if (Config.authentication) {
-                    if (!(await Utils.testToken(token, 0, true))) {
+                    if (!(await Utils.testToken(token, 2, true))) {
                         const perfEnd = performance.now() - perfStart
                         let errMsg = `The token is invalid or don't have the right permissions.`
                         if (token === undefined) {
@@ -47,7 +40,15 @@ export class PromotionService {
                     }
                 }
 
-                let res = ['Vous êtes bien dans le module des Promotions.']
+                // --
+
+                const db = new Database(Config.dbName)
+                const request: string = 'SELECT * FROM promotion;'
+                const res: IPromotion[] = db.prepare(request).all()
+
+                // let res = ['Vous êtes bien dans le module des Promotions.']
+
+                // --
 
                 const perfEnd = performance.now() - perfStart
                 logger.log(`reqPromotions[${uuid.slice(0, 6)}.] - ` + `Process completed successfully.` + ` - (${perfEnd}ms)`)
@@ -77,8 +78,6 @@ export class PromotionService {
 
 
         })
-
-        // ---
 
     }
 

@@ -2,8 +2,14 @@
     "authentication": true,
     "tokenDuration": 0,
     "loginList": [{
-        "login": "mnoel",
-        "password": "mdp",
-        "authLevel": 0
-    }]
+            "login": "mnoel",
+            "password": "mdp",
+            "authLevel": 0
+        },
+        {
+            "login": "userTest",
+            "password": "passpass",
+            "authLevel": 2
+        }
+    ]
 }
