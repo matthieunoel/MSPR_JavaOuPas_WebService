@@ -1,0 +1,25 @@
+{
+    "defaultSeverity": "warning",
+    "extends": "tslint:recommended",
+    "jsRules": {},
+    "rules": {
+        "deprecation": {
+            "severity": "warning"
+        },
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "semicolon": [
+            true,
+            "never"
+        ],
+        "no-console": false,
+        "no-var-requires": false,
+        "no-shadowed-variable": false,
+        "forin": false,
+        "prefer-const": false,
+        "max-classes-per-file": false
+    },
+    "rulesDirectory": []
+}

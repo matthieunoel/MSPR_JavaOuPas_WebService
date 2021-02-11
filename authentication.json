@@ -1,0 +1,9 @@
+{
+    "authentication": true,
+    "tokenDuration": 0,
+    "loginList": [{
+        "login": "mnoel",
+        "password": "mdp",
+        "authLevel": 0
+    }]
+}

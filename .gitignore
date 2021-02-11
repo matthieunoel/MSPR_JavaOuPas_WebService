@@ -1,0 +1,10 @@
+node_modules
+src/**/*.js
+src/**/*.map
+tmp/**
+db
+log
+db/**/**.*
+*.log
+.vscode
+.vscode/**.*
