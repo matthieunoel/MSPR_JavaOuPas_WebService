@@ -1,9 +1,8 @@
 # Installation
 
 ```sh
-npm i -g yarn
 npm i -g nodemon
-sudo yarn install
+sudo npm install
 ```
 
 Then, edit "./src/app.ts", put you're ip address and set the config you want.
@@ -11,8 +10,8 @@ Then, edit "./src/app.ts", put you're ip address and set the config you want.
 Finally, in function of the plateform you're using,
 
 ```sh
-yarn start-wnd
-yarn start-linux
+npm start-wnd
+npm start-linux
 ```
 
 # Authentication
