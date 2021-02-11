@@ -156,7 +156,3 @@ For only one promotion response looks like :
 
 If you have some issues installing the server on windows, follow instructions of this :
 https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md
-
-# ToDo List
-
-- Full configuration from JSON + dbname config
