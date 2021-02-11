@@ -91,7 +91,7 @@ You can configure the anthentication in "./authentication.json". The file should
     9 - Req  [2020-12-11 14:04:36] Request at "/".
     ```
   
-  - GET: "/promotion" (Params: token(string), codePromo(?string)) : Permit to get a promotion or the entire promotion list. If you give the codePromo in parameters, you will get one. The two requests have different autorisation types (higher for all, lower for one).
+- GET: "/promotion" (Params: token(string), codePromo(?string)) : Permit to get a promotion or the entire promotion list. If you give the codePromo in parameters, you will get one. The two requests have different autorisation types (higher for all, lower for one).
   For only one promotion response looks like :
 
   ```
