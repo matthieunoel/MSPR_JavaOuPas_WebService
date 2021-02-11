@@ -1,4 +1,4 @@
-export interface IVoiceRootResult {
+export interface IPromotionRootResult {
     status: string,
     performanceMs: number,
     responseSize: number,

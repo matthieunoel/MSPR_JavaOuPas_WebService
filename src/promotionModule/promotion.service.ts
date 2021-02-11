@@ -1,14 +1,10 @@
-import { Logger } from "../logSystem"
-import { IVoiceRootResult } from "./voice.interfaces"
+import { Logger } from '../logSystem'
+import { IPromotionRootResult } from './promotion.interfaces'
 import { performance } from 'perf_hooks'
-import { couldStartTrivia } from 'typescript'
-import { Config } from '../app'
-import { Utils } from '../utils'
-import { exception } from "console"
 
 const uuidv1 = require('uuid/v1')
 
-export class VoiceService {
+export class PromotionService {
 
     // Ok, l'idée c'est former une url pour translate.google.com avec le text, les langues et tout.
     // Ensuite, avec Puppeteer on record la video, on clique sur le bouton du haut parleur
@@ -18,26 +14,20 @@ export class VoiceService {
 
 
 
-    public reqVoice(): Promise<IVoiceRootResult> {
-        // return {
-        //     module: 'Voice',
-        //     help: 'Parameters : token, lang, text'
-        // }
-
-        // ---
+    public reqPromotions(): Promise<IPromotionRootResult> {
 
         const perfStart = performance.now()
         const uuid: string = uuidv1()
         const logger: Logger = new Logger()
 
-        return new Promise<IVoiceRootResult>(async (resolve, reject) => {
+        return new Promise<IPromotionRootResult>(async (resolve, reject) => {
 
             try {
 
-                let res = ['Vous êtes bien dans le module voice.']
+                let res = ['Vous êtes bien dans le module des Promotions.']
 
                 const perfEnd = performance.now() - perfStart
-                logger.log(`getClients[${uuid.slice(0, 6)}.] - ` + `Process completed successfully.` + ` - (${perfEnd}ms)`)
+                logger.log(`reqPromotions[${uuid.slice(0, 6)}.] - ` + `Process completed successfully.` + ` - (${perfEnd}ms)`)
                 return resolve({
                     'status': 'OK',
                     'performanceMs': perfEnd,
@@ -50,7 +40,7 @@ export class VoiceService {
             catch (error) {
                 // throw error
                 const perfEnd = performance.now() - perfStart
-                logger.error(`getClients[${uuid.slice(0, 6)}.] - ` + error.name + ' ' + error.message + ` - (${perfEnd}ms)`)
+                logger.error(`reqPromotions[${uuid.slice(0, 6)}.] - ` + error.name + ' ' + error.message + ` - (${perfEnd}ms)`)
                 return reject({
                     'status': 'KO',
                     'performanceMs': perfEnd,
