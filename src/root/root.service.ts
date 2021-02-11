@@ -59,6 +59,10 @@ export class RootService {
             request = 'CREATE TABLE IF NOT EXISTS token(id INTEGER PRIMARY KEY AUTOINCREMENT, token TEXT, permissions NUMERIC, expiration TEXT);'
             db.prepare(request).run()
 
+            // Setting Promotion table
+            request = 'CREATE TABLE IF NOT EXISTS promotion(codePromo TEXT PRIMARY KEY, libelle TEXT, sujet TEXT, description TEXT, valeurPromo NUMERIC, typePromo NUMERIC, imgPath TEXT);'
+            db.prepare(request).run()
+
             logger.log(`initDB[${uuid.slice(0, 6)}] - ` + `Table creation if don't exists executed successfully.` + ` - (${performance.now() - perfStart}ms)`)
 
             db.close()
