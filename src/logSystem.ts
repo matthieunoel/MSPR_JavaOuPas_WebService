@@ -28,11 +28,11 @@ export class Logger {
 
         try {
 
-            const month = Utils.extendNumber(parseInt(('0' + (new Date(Date.now()).getMonth() + 1)).slice(-2), 10), 2)
-            const year = Utils.extendNumber(new Date(Date.now()).getFullYear(), 4)
+            const month = await Utils.extendNumber(parseInt(('0' + (new Date(Date.now()).getMonth() + 1)).slice(-2), 10), 2)
+            const year = await Utils.extendNumber(new Date(Date.now()).getFullYear(), 4)
             const file: string = `./log/${year}-${month}.log`
 
-            let text = `${level} [${Utils.getDate()}] ${message}\r\n`
+            let text = `${level} [${await Utils.getDate()}] ${message}\r\n`
             await fsPromise.appendFile(file, text)
 
         } catch (error) {

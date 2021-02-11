@@ -25,15 +25,15 @@ export class Utils {
         }
     }
 
-    public static getDate() {
+    public static async getDate() {
 
         let dateOb = new Date()
-        let day = this.extendNumber(parseInt(('0' + dateOb.getDate()).slice(-2), 10), 2)
-        let month = this.extendNumber(parseInt(('0' + (dateOb.getMonth() + 1)).slice(-2), 10), 2)
-        let year = this.extendNumber(dateOb.getFullYear(), 4)
-        let hours = this.extendNumber(dateOb.getHours(), 2)
-        let minutes = this.extendNumber(dateOb.getMinutes(), 2)
-        let seconds = this.extendNumber(dateOb.getSeconds(), 2)
+        let day = await this.extendNumber(parseInt(('0' + dateOb.getDate()).slice(-2), 10), 2)
+        let month = await this.extendNumber(parseInt(('0' + (dateOb.getMonth() + 1)).slice(-2), 10), 2)
+        let year = await this.extendNumber(dateOb.getFullYear(), 4)
+        let hours = await this.extendNumber(dateOb.getHours(), 2)
+        let minutes = await this.extendNumber(dateOb.getMinutes(), 2)
+        let seconds = await this.extendNumber(dateOb.getSeconds(), 2)
 
         return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
     }
@@ -55,15 +55,22 @@ export class Utils {
                 const request: string = `SELECT permissions, expiration FROM token WHERE token = '${token}';`
                 const res: ITokenTestResponse[] = db.prepare(request).all()
 
+                // console.log('res[0] :', res[0])
+
                 if (res.length === 0) {
                     validity = false
                 }
                 else if ((Config.tokenDuration > 0) && (permissionAsked < res[0].permissions || new Date(res[0].expiration) < new Date())) {
                     validity = false
                 }
+                else if ((Config.tokenDuration === 0) && permissionAsked < res[0].permissions) {
+                    validity = false
+                }
                 else {
                     validity = true
                 }
+
+                // console.log('validity :', validity)
 
                 if (onlyBooleanReturn) {
                     return resolve(validity)
