@@ -13,5 +13,6 @@ export interface IPromotion {
     description: string,
     valeurPromo: number,
     typePromo: number,
-    imgPath: string
+    imgPath?: string,
+    img?: string
 }
