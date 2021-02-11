@@ -29,7 +29,7 @@ export class PromotionService {
                 if (codePromo != null) {
 
                     if (Config.authentication) {
-                        if (!(await Utils.testToken(token, 1, true))) {
+                        if (!(await Utils.testToken(token, 2, true))) {
                             const perfEnd = performance.now() - perfStart
                             let errMsg = `The token is invalid or don't have the right permissions.`
                             if (token === undefined) {
@@ -56,7 +56,7 @@ export class PromotionService {
                 else {
 
                     if (Config.authentication) {
-                        if (!(await Utils.testToken(token, 2, true))) {
+                        if (!(await Utils.testToken(token, 1, true))) {
                             const perfEnd = performance.now() - perfStart
                             let errMsg = `The token is invalid or don't have the right permissions.`
                             if (token === undefined) {
