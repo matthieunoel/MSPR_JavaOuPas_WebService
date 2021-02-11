@@ -1,3 +1,8 @@
+import { Config } from './app'
+import { ITokenTestResponse } from './root/root.interfaces'
+
+const Database = require('better-sqlite3')
+
 export class Utils {
 
     // To prevent some SQL Injections
@@ -31,6 +36,57 @@ export class Utils {
         let seconds = this.extendNumber(dateOb.getSeconds(), 2)
 
         return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    }
+
+    public static async testToken(token: string, permissionAsked: number, onlyBooleanReturn: boolean): Promise<boolean | ITokenTestResponse> {
+
+        return new Promise<boolean | ITokenTestResponse>((resolve, reject) => {
+
+            if (token === undefined) {
+                return resolve(false)
+            }
+            else {
+
+                let validity: boolean
+
+                token = Utils.formatStrForSQL(token)
+
+                const db = new Database(Config.dbName)
+                const request: string = `SELECT permissions, expiration FROM token WHERE token = '${token}';`
+                const res: ITokenTestResponse[] = db.prepare(request).all()
+
+                if (res.length === 0) {
+                    validity = false
+                }
+                else if ((Config.tokenDuration > 0) && (permissionAsked < res[0].permissions || new Date(res[0].expiration) < new Date())) {
+                    validity = false
+                }
+                else {
+                    validity = true
+                }
+
+                if (onlyBooleanReturn) {
+                    return resolve(validity)
+                }
+                else {
+                    if (validity) {
+                        res[0].validity = validity
+                    }
+                    else {
+                        res.push({
+                            expiration: '-',
+                            permissions: -1
+                        })
+                        res[0].validity = validity
+                    }
+
+                    return resolve(res[0])
+                }
+
+            }
+
+
+        })
     }
 
 }

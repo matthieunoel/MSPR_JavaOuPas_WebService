@@ -37,7 +37,7 @@ export class RootController {
         @QueryParam('login', { required: false }) login: string,
         @QueryParam('password', { required: false }) password: string
     ): Promise<ITokenResult> {
-        this.logger.reqLog(`Request at "/getToken". Parameters are : {login: ${login}, password: }`)
+        this.logger.reqLog(`Request at "/getToken". Parameters are : {login: ${login}, password: XXXXX}`)
         return await this.rootService.getToken(login, password)
     }
 

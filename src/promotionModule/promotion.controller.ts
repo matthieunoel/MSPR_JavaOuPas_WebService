@@ -18,9 +18,11 @@ export class PromotionController {
 
     @ContentType('application/json')
     @Get('/promotion')
-    root(@Res() response: Response): Promise<IPromotionRootResult> {
-        this.logger.reqLog('Request at "/promotion".')
-        return this.promotionService.reqPromotions()
+    root(
+        @QueryParam('token', { required: false }) token: string
+    ): Promise<IPromotionRootResult> {
+        this.logger.reqLog(`Request at "/promotion". Parameters are : {token: ${token}}`)
+        return this.promotionService.reqPromotions(token)
     }
 
 }
