@@ -94,7 +94,7 @@ You can configure the anthentication in "./authentication.json". The file should
 - GET: "/promotion" (Params: token(string), codePromo(?string)) : Permit to get a promotion or the entire promotion list. If you give the codePromo in parameters, you will get one. The two requests have different autorisation types (higher for all, lower for one).
   For only one promotion response looks like :
 
-  ```
+  ```json
   {
       "status": "OK",
       "performanceMs": 10.640399999916553,
@@ -115,7 +115,7 @@ You can configure the anthentication in "./authentication.json". The file should
 
   For only one promotion response looks like :
 
-  ```
+  ```json
   {
       "status": "OK",
       "performanceMs": 7.2340999990701675,
