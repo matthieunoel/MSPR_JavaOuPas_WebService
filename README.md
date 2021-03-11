@@ -107,7 +107,9 @@ You can configure the anthentication in "./authentication.json". The file should
               "description": "Quelle dinguerie cette promotion !",
               "valeurPromo": 10,
               "typePromo": 2,
-              "img": "data:image/png;base64,iVBORw0KGgoAAAANSU..."
+              "dateDebut": "2021-03-11 10:26:00.000",
+              "dateFin": "2021-05-01 10:26:00.000",
+              "imgPath": "https://test.com/img.png"
           }
       ]
   }
@@ -128,7 +130,9 @@ You can configure the anthentication in "./authentication.json". The file should
               "description": "Cet été, profitez de cette magnifique reduction sur notre collection 2020 !",
               "valeurPromo": 25,
               "typePromo": 1,
-              "img": "data:image/png;base64,iVBOR..."
+              "dateDebut": "2021-03-11 10:21:00.000",
+              "dateFin": "2021-04-11 10:21:00.000",
+              "imgPath": "data:image/png;base64,iVBOR..."
           },
           {
               "codePromo": "UNICORN04",
@@ -137,7 +141,9 @@ You can configure the anthentication in "./authentication.json". The file should
               "description": "Quelle dinguerie cette promotion !",
               "valeurPromo": 10,
               "typePromo": 2,
-              "img": "data:image/png;base64,nr0AA..."
+              "dateDebut": "2021-03-11 10:26:00.000",
+              "dateFin": "2021-05-01 10:26:00.000",
+              "imgPath": "https://test.com/img.png"
           }
       ]
   }
