@@ -1,23 +1,22 @@
 {
     "name": "MsprJavaOuPasWebService",
     "version": "1.0.0",
-    "description": "Server for company access control a bit safe.",
+    "description": "",
     "main": "src/app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "release": "standard-version -a && git push --follow-tags origin master",
         "build": "tsc -p ./",
-        "start-linux": "sudo npm run build ; nodemon --watch src src/**.ts",
+        "start-linux": "npm run build ; nodemon --watch src src/**.ts",
         "start-wnd": "npm run build && nodemon --watch src src/**.ts"
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:matthieunoel/Clients-API.git"
+        "url": "git@github.com:matthieunoel/MSPR_JavaOuPas_WebService.git"
     },
     "author": "Matthieu NOEL",
     "license": "ISC",
     "dependencies": {
-        "@puppeteer/recorder": "0.0.4",
         "@types/body-parser": "^1.19.0",
         "@types/multer": "^1.4.2",
         "better-sqlite3": "^6.0.1",
