@@ -113,7 +113,7 @@ You can configure the anthentication in "./authentication.json". The file should
   }
   ```
 
-  For only one promotion response looks like :
+  For every promotions response looks like :
 
   ```json
   {
