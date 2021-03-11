@@ -13,6 +13,7 @@ export interface IPromotion {
     description: string,
     valeurPromo: number,
     typePromo: number,
-    imgPath?: string,
-    img?: string
+    dateDebut: string | Date,
+    dateFin: string | Date,
+    imgPath: string
 }

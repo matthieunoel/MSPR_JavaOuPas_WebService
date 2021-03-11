@@ -84,8 +84,8 @@ export class PromotionService {
 
                 for (let promotion of reqRes) {
                     // promotion.img = promotion.imgPath
-                    promotion.img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABrUlEQVRYR+2XzUrDQBSFz7TgD4XiD6JLQREtdSG4sAsfQOk7aZdCX8FV8QWkvoGL7kRJzcJNAtIWWmqtWlS0IxGnppnJZGYaycbZ5t57vnvuJNwQJHyIqT61ix0Ai14+2aoa1zFKpHaRcuAUA5KrZnQb0gIQCgcUdd1QAlARDnauCiIFMBHWBREC0PpBDql0XXeesvgwRziAOLoOBSGpLNk8f/I/HwH8qbDkoo4AmpU8ncrOYmFjOU7nuVq1UweFsjXSHQNg0Su7q7FDeMLsRALECeIX1gaYBEQkbAygA9Kq9+HUutIRKo9AVGVmPoO5tSWhgKxrf8JEACI3VIUnHoGobeda/4WJxQEmmywABZybJB1IGoBSwE3SgX+AeB042z7EkF7o3GkTAP83wNPiNqJmJf8JIKUC8vEO3NsqkQBJD/f3Tm4vuZ0xLN1bUKJKvw6A1l1UFMYWEGUAFigDeekBbTccIGi3KFLpv8BLFIH020C3wZdVEWZZygAiRx4awGP7F0BH2Bjgxw1v8usdF3jufZc6LpStUvRt4CO0HfCXuDrKv+2UrGkTYZbzBapd0iFRB/DCAAAAAElFTkSuQmCC'
-                    promotion.imgPath = undefined
+                    // promotion.img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABrUlEQVRYR+2XzUrDQBSFz7TgD4XiD6JLQREtdSG4sAsfQOk7aZdCX8FV8QWkvoGL7kRJzcJNAtIWWmqtWlS0IxGnppnJZGYaycbZ5t57vnvuJNwQJHyIqT61ix0Ai14+2aoa1zFKpHaRcuAUA5KrZnQb0gIQCgcUdd1QAlARDnauCiIFMBHWBREC0PpBDql0XXeesvgwRziAOLoOBSGpLNk8f/I/HwH8qbDkoo4AmpU8ncrOYmFjOU7nuVq1UweFsjXSHQNg0Su7q7FDeMLsRALECeIX1gaYBEQkbAygA9Kq9+HUutIRKo9AVGVmPoO5tSWhgKxrf8JEACI3VIUnHoGobeda/4WJxQEmmywABZybJB1IGoBSwE3SgX+AeB042z7EkF7o3GkTAP83wNPiNqJmJf8JIKUC8vEO3NsqkQBJD/f3Tm4vuZ0xLN1bUKJKvw6A1l1UFMYWEGUAFigDeekBbTccIGi3KFLpv8BLFIH020C3wZdVEWZZygAiRx4awGP7F0BH2Bjgxw1v8usdF3jufZc6LpStUvRt4CO0HfCXuDrKv+2UrGkTYZbzBapd0iFRB/DCAAAAAElFTkSuQmCC'
+                    // promotion.imgPath = undefined
                     res.push(promotion)
                 }
 
