@@ -50,7 +50,7 @@ export class PromotionService {
 
                     request = `SELECT * FROM promotion WHERE codePromo = '${codePromo}';`
 
-                    console.log('codePromo :', codePromo)
+                    // console.log('codePromo :', codePromo)
 
                 }
                 else {
@@ -122,6 +122,88 @@ export class PromotionService {
 
         })
 
+    }
+
+    public reqAddPromotions(token: string, promotions: IPromotion[]): Promise<IPromotionRootResult> {
+        const perfStart = performance.now()
+        const uuid: string = uuidv1()
+        const logger: Logger = new Logger()
+
+        return new Promise<IPromotionRootResult>(async (resolve, reject) => {
+
+            try {
+
+                const db = new Database(Config.dbName)
+                let res: IPromotion[] = []
+                let request: string
+
+                if (Config.authentication) {
+                    if (!(await Utils.testToken(token, 1, true))) {
+                        const perfEnd = performance.now() - perfStart
+                        let errMsg = `The token is invalid or don't have the right permissions.`
+                        if (token === undefined) {
+                            errMsg = `The token is missing.`
+                        }
+                        logger.error(`reqAddPromotions[${uuid.slice(0, 6)}.] - ` + errMsg + ` - (${performance.now() - perfStart}ms)`)
+                        return reject({
+                            'status': 'KO',
+                            'performanceMs': perfEnd,
+                            'responseSize': 0,
+                            'errors': [{
+                                code: 12,
+                                message: errMsg
+                            }]
+                        })
+                    }
+                }
+
+                if (promotions.length >= 1) {
+
+                    let req = 'INSERT INTO promotion (codePromo, libelle, sujet, description, valeurPromo, typePromo, dateDebut, dateFin, imgPath) VALUES '
+
+                    for (let index = 0; index < promotions.length; index++) {
+                        const promotion: IPromotion = promotions[index]
+                        req += `('${promotion.codePromo.replace(/'/g, '\'\'')}', '${promotion.libelle.replace(/'/g, '\'\'')}', '${promotion.sujet.replace(/'/g, '\'\'')}', '${promotion.description.replace(/'/g, '\'\'')}', ${promotion.valeurPromo}, ${promotion.typePromo}, '${promotion.dateDebut}', '${promotion.dateFin}', '${promotion.imgPath.replace(/'/g, '\'\'')}'), `
+                    }
+
+                    req = req.replace(/..$/, ';')
+
+                    logger.log(`reqAddPromotions[${uuid.slice(0, 6)}.]- ` + `Inserting into database: "${req}"` + ` - (${performance.now() - perfStart} ms)`)
+
+                    db.prepare(req).run()
+
+                }
+
+                db.close()
+
+                const perfEnd = performance.now() - perfStart
+                logger.log(`reqAddPromotions[${uuid.slice(0, 6)}.]- ` + `Process completed successfully.` + ` - (${perfEnd} ms)`)
+                return resolve({
+                    'status': 'OK',
+                    'performanceMs': perfEnd,
+                    'responseSize': res.length,
+                    'response': res
+                })
+
+
+            }
+            catch (error) {
+                // throw error
+                const perfEnd = performance.now() - perfStart
+                logger.error(`reqAddPromotions[${uuid.slice(0, 6)}.]- ` + error.name + ' ' + error.message + ` - (${perfEnd} ms)`)
+                return reject({
+                    'status': 'KO',
+                    'performanceMs': perfEnd,
+                    'responseSize': 0,
+                    'errors': [{
+                        code: 20,
+                        message: error.name + ' ' + error.message
+                    }]
+                })
+            }
+
+
+        })
     }
 
 }

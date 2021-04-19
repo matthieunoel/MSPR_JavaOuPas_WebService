@@ -76,42 +76,42 @@ You can configure the anthentication in "./authentication.json". The file should
   }
   ```
 
-- GET: "/logs" (Params: token(string), all(?boolean), guestId(?number), uuid(?string), dateStart(?string), dateEnd(?string)) : Permit to check logs, these parameters are options. "all" permit to see all logs, not only this month. guestId, uuid, dateStart, dateEnd are filters. dateStart and dateEnd have to be this way : "YYYY-MM-DDThh:mm:ss", for example, "2020-03-24T11:15:00".
+- GET: "/logs" (Params: token(string), all(?boolean), guestId(?number), uuid(?string), dateStart(?string), dateEnd(?string)) : Need a high level authorisation token. Permit to check logs, these parameters are options. "all" permit to see all logs, not only this month. guestId, uuid, dateStart, dateEnd are filters. dateStart and dateEnd have to be this way : "YYYY-MM-DDThh:mm:ss", for example, "2020-03-24T11:15:00".
   The response looks like :
 
-    ```
-    1 - Req  [2020-12-11 13:57:24] Request at "/getClients". Parameters are : {id: undefined, guid: undefined, first: Eugene, last: undefined, street: undefined, city: undefined, zip: undefined}
-    2 - Log  [2020-12-11 13:57:24] getClients[6a0fdf.] - Process completed successfully. - (141.21329998970032ms)
-    3 - Req  [2020-12-11 13:57:28] Request at "/getLogs". Parameters are : {uuid: undefined, dateStart: undefined, dateEnd: undefined, all: true}
-    4 - Log  [2020-12-11 13:57:28] getLogs[6c65b5.] - Parameter "all" used succesfully - (3.136598974466324ms)
-    5 - Log  [2020-12-11 13:57:28] getLogs[6c65b5.] - Process completed successfully. - (17.92179998755455ms)
-    6 - Req  [2020-12-11 13:57:45] Request at "/getLogs". Parameters are : {uuid: undefined, dateStart: undefined, dateEnd: undefined, all: true}
-    7 - Log  [2020-12-11 13:57:45] getLogs[76711f.] - Parameter "all" used succesfully - (1.9009000062942505ms)
-    8 - Log  [2020-12-11 13:57:45] getLogs[76711f.] - Process completed successfully. - (18.925298988819122ms)
-    9 - Req  [2020-12-11 14:04:36] Request at "/".
-    ```
-  
+  ```
+  1 - Req  [2020-12-11 13:57:24] Request at "/getClients". Parameters are : {id: undefined, guid: undefined, first: Eugene, last: undefined, street: undefined, city: undefined, zip: undefined}
+  2 - Log  [2020-12-11 13:57:24] getClients[6a0fdf.] - Process completed successfully. - (141.21329998970032ms)
+  3 - Req  [2020-12-11 13:57:28] Request at "/getLogs". Parameters are : {uuid: undefined, dateStart: undefined, dateEnd: undefined, all: true}
+  4 - Log  [2020-12-11 13:57:28] getLogs[6c65b5.] - Parameter "all" used succesfully - (3.136598974466324ms)
+  5 - Log  [2020-12-11 13:57:28] getLogs[6c65b5.] - Process completed successfully. - (17.92179998755455ms)
+  6 - Req  [2020-12-11 13:57:45] Request at "/getLogs". Parameters are : {uuid: undefined, dateStart: undefined, dateEnd: undefined, all: true}
+  7 - Log  [2020-12-11 13:57:45] getLogs[76711f.] - Parameter "all" used succesfully - (1.9009000062942505ms)
+  8 - Log  [2020-12-11 13:57:45] getLogs[76711f.] - Process completed successfully. - (18.925298988819122ms)
+  9 - Req  [2020-12-11 14:04:36] Request at "/".
+  ```
+
 - GET: "/promotion" (Params: token(string), codePromo(?string)) : Permit to get a promotion or the entire promotion list. If you give the codePromo in parameters, you will get one. The two requests have different autorisation types (higher for all, lower for one).
   For only one promotion response looks like :
 
   ```json
   {
-      "status": "OK",
-      "performanceMs": 10.640399999916553,
-      "responseSize": 1,
-      "response": [
-          {
-              "codePromo": "UNICORN04",
-              "libelle": "C'est la fete des licornes !",
-              "sujet": "sur chaque article Licorne achetés.",
-              "description": "Quelle dinguerie cette promotion !",
-              "valeurPromo": 10,
-              "typePromo": 2,
-              "dateDebut": "2021-03-11 10:26:00.000",
-              "dateFin": "2021-05-01 10:26:00.000",
-              "imgPath": "https://test.com/img.png"
-          }
-      ]
+    "status": "OK",
+    "performanceMs": 10.640399999916553,
+    "responseSize": 1,
+    "response": [
+      {
+        "codePromo": "UNICORN04",
+        "libelle": "C'est la fete des licornes !",
+        "sujet": "sur chaque article Licorne achetés.",
+        "description": "Quelle dinguerie cette promotion !",
+        "valeurPromo": 10,
+        "typePromo": 2,
+        "dateDebut": "2021-03-11 10:26:00.000",
+        "dateFin": "2021-05-01 10:26:00.000",
+        "imgPath": "https://test.com/img.png"
+      }
+    ]
   }
   ```
 
@@ -119,21 +119,43 @@ You can configure the anthentication in "./authentication.json". The file should
 
   ```json
   {
-      "status": "OK",
-      "performanceMs": 7.2340999990701675,
-      "responseSize": 2,
-      "response": [
-          {
-              "codePromo": "ETE2020",
-              "libelle": "Achetez des truc cet été !",
-              "sujet": "sur la collection été 2020 !",
-              "description": "Cet été, profitez de cette magnifique reduction sur notre collection 2020 !",
-              "valeurPromo": 25,
-              "typePromo": 1,
-              "dateDebut": "2021-03-11 10:21:00.000",
-              "dateFin": "2021-04-11 10:21:00.000",
-              "imgPath": "data:image/png;base64,iVBOR..."
-          },
+    "status": "OK",
+    "performanceMs": 7.2340999990701675,
+    "responseSize": 2,
+    "response": [
+      {
+        "codePromo": "ETE2020",
+        "libelle": "Achetez des truc cet été !",
+        "sujet": "sur la collection été 2020 !",
+        "description": "Cet été, profitez de cette magnifique reduction sur notre collection 2020 !",
+        "valeurPromo": 25,
+        "typePromo": 1,
+        "dateDebut": "2021-03-11 10:21:00.000",
+        "dateFin": "2021-04-11 10:21:00.000",
+        "imgPath": "data:image/png;base64,iVBOR..."
+      },
+      {
+        "codePromo": "UNICORN04",
+        "libelle": "C'est la fete des licornes !",
+        "sujet": "sur chaque article Licorne achetés.",
+        "description": "Quelle dinguerie cette promotion !",
+        "valeurPromo": 10,
+        "typePromo": 2,
+        "dateDebut": "2021-03-11 10:26:00.000",
+        "dateFin": "2021-05-01 10:26:00.000",
+        "imgPath": "https://test.com/img.png"
+      }
+    ]
+  }
+  ```
+
+- POST: "/promotion" : Need a high level authorisation token. Permit to save new promotions to the database.
+  The body sent with the request should looks like :
+
+  ```json
+  {
+      "token": "0fd93fa0-8279-21eb-aba7-11c17a555ec5",
+      "promotions": [
           {
               "codePromo": "UNICORN04",
               "libelle": "C'est la fete des licornes !",
@@ -144,10 +166,22 @@ You can configure the anthentication in "./authentication.json". The file should
               "dateDebut": "2021-03-11 10:26:00.000",
               "dateFin": "2021-05-01 10:26:00.000",
               "imgPath": "https://test.com/img.png"
-          }
+          },
+          ...
       ]
   }
   ```
+
+The response should looks like :
+
+ ```json
+  {
+      "status": "OK",
+      "performanceMs": 16.82310000061989,
+      "responseSize": 0,
+      "response": []
+  }
+ ```
 
 # Error code list :
 

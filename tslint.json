@@ -19,7 +19,8 @@
         "no-shadowed-variable": false,
         "forin": false,
         "prefer-const": false,
-        "max-classes-per-file": false
+        "max-classes-per-file": false,
+        "prefer-for-of": false
     },
     "rulesDirectory": []
 }
