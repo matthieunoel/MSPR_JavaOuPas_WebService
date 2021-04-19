@@ -172,16 +172,16 @@ You can configure the anthentication in "./authentication.json". The file should
   }
   ```
 
-The response should looks like :
+  The response should looks like :
 
- ```json
-  {
-      "status": "OK",
-      "performanceMs": 16.82310000061989,
-      "responseSize": 0,
-      "response": []
-  }
- ```
+   ```json
+    {
+        "status": "OK",
+        "performanceMs": 16.82310000061989,
+        "responseSize": 0,
+        "response": []
+    }
+   ```
 
 # Error code list :
 
